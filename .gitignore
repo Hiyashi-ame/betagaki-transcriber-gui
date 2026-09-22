@@ -1,0 +1,27 @@
+# Only reviewed source/documentation paths are eligible for publication.
+*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/requirements.txt
+!/transcribe_betagaki_gui.py
+!/start_gui_windows.bat
+!/start_gui_mac.command
+!/AGENTS.md
+!/tests/
+!/tests/test_*.py
+!/scripts/
+!/scripts/check_publication.py
+!/docs/
+!/docs/*.md
+!/docs/images/
+!/docs/images/app-macos.png
+!/docs/issues/
+!/docs/issues/*.md
+!/.github/
+!/.github/ISSUE_TEMPLATE/
+!/.github/ISSUE_TEMPLATE/*.md
+!/.github/workflows/
+!/.github/workflows/ci.yml
+!/.github/pull_request_template.md
