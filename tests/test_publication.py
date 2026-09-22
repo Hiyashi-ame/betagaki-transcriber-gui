@@ -40,8 +40,9 @@ class PublicationTests(unittest.TestCase):
             subprocess.run(['git', 'init', directory], check=True, capture_output=True)
             (root / '.gitignore').write_bytes(source.read_bytes())
             private = ['sample.M4A', 'sample/sample.txt', '.env', '_chunks_123/chunk.mp3', 'secret.json']
-            result = subprocess.run(['git', '-C', directory, 'check-ignore', '--stdin'],
-                                    input='\n'.join(private), text=True, capture_output=True, check=True)
-            self.assertEqual(result.stdout.splitlines(), private)
+            result = subprocess.run(['git', '-C', directory, 'check-ignore', '--stdin', '-z'],
+                                    input=('\0'.join(private) + '\0').encode('utf-8'),
+                                    capture_output=True, check=True)
+            self.assertEqual(result.stdout.decode('utf-8').rstrip('\0').split('\0'), private)
             result = subprocess.run(['git', '-C', directory, 'check-ignore', 'requirements.txt'], capture_output=True)
             self.assertEqual(result.returncode, 1)
